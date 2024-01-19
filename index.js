@@ -5,6 +5,7 @@ const Discord = require("discord.js");
 const { Client, IntentsBitField } = require("discord.js");
 const { CommandKit } = require("commandkit");
 const path = require("path");
+const keep_alive = require("./keep_alive.js");
 
 const client = new Client({
   intents: [
