@@ -20,9 +20,7 @@ const client = new Client({
 
 new CommandKit({
   client,
-  commandsPath: path.join(__dirname, "commands"),
   eventsPath: path.join(__dirname, "events"),
-  validationsPath: path.join(__dirname, "validations"),
   bulkRegister: true,
 });
 
