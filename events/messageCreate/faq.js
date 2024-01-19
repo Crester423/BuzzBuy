@@ -4,9 +4,11 @@ module.exports = async (message, client) => {
   if (
     !message.content.startsWith("?faq") ||
     message.author.bot ||
-    !ownerId.contains(message.author.id)
+    !ownerId.includes(message.author.id)
   )
     return;
+
+  message.delete();
 
   const exampleEmbed = {
     color: 0x0099ff,
