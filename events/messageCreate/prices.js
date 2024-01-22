@@ -3,6 +3,7 @@ const ownerId = require("../../utils/owner");
 module.exports = async (message, client) => {
   if (
     !message.content.startsWith("?prices") ||
+    message.content.includes("f") ||
     message.author.bot ||
     !ownerId.includes(message.author.id)
   )
