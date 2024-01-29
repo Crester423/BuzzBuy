@@ -1,6 +1,5 @@
 const ownerId = require("../../utils/owner");
 
-const embeds = [];
 const bundle = [
   {
     desc: `**Glided Elites Pack**\n\n**499 INR / 5.99 USD**`,
@@ -29,6 +28,7 @@ module.exports = async (message, client) => {
     return;
 
   message.delete();
+  const embeds = [];
 
   bundle.forEach((bundle) => {
     const embed = {
