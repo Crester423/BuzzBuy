@@ -15,8 +15,8 @@ module.exports = async (message, client) => {
 
   memberStatus.push(...(await Promise.all(fetchPromises)));
   if (memberStatus.every((val) => val === undefined || val === "offline")) {
-    channel.send(
-      "No admins is currently online, please wait and we will get back to you as soon as possible"
+    message.reply(
+      "No admin is currently online, please wait and we will get back to you as soon as possible!"
     );
   } else return;
 };
