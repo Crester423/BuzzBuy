@@ -13,6 +13,7 @@ module.exports = async (message, client) => {
   ) {
     message.delete();
     blockChannel.push(channel.name);
+    return;
   } else {
     if (message.author.bot) return;
 
