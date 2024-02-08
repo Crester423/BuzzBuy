@@ -5,13 +5,13 @@ let blockChannel = [];
 module.exports = async (message, client) => {
   const channel = message.channel;
   if (message.content === "?startPing" && ownerId.includes(message.author.id)) {
-    message.reply("Ping resumed ✅");
+    message.delete();
     blockChannel = blockChannel.filter((el) => el !== channel.name);
   } else if (
     message.content === "?stopPing" &&
     ownerId.includes(message.author.id)
   ) {
-    message.reply("Ping stopped ✅");
+    message.delete();
     blockChannel.push(channel.name);
   } else {
     if (message.author.bot) return;
