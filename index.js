@@ -20,8 +20,11 @@ const client = new Client({
 
 new CommandKit({
   client,
+  commandsPath: path.join(__dirname, "commands"),
+  validationsPath: path.join(__dirname, "validations"),
   eventsPath: path.join(__dirname, "events"),
-  bulkRegister: true,
+  devRoleIds: ["1196774353459740682"],
+  bulkRegister: false,
 });
 
 client.login(process.env.TOKEN);
