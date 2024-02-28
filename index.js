@@ -27,4 +27,6 @@ new CommandKit({
   bulkRegister: false,
 });
 
+console.log(process.env.TOKEN);
+
 client.login(process.env.TOKEN);
