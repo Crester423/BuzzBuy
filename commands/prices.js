@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const moment = require("moment");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -18,15 +19,18 @@ module.exports = {
       subcommand.setName("nitro").setDescription("prices for discord nitro")
     )
     .addSubcommand((subcommand) =>
-      subcommand
-        .setName("nitro-boost")
-        .setDescription("prices for discord nitro")
-    )
-    .addSubcommand((subcommand) =>
       subcommand.setName("spotify").setDescription("prices for spotify")
     )
     .addSubcommand((subcommand) =>
       subcommand.setName("youtube").setDescription("prices for youtube")
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("youtube-music")
+        .setDescription("prices for youtube music")
+    )
+    .addSubcommand((subcommand) =>
+      subcommand.setName("crunchyroll").setDescription("prices for crunchyroll")
     ),
 
   run: ({ interaction, client, handler }) => {
@@ -125,78 +129,237 @@ module.exports = {
       //? ----------------------------------------------------
       else if (subcommand === "nitro") {
         const exampleEmbed = {
-          color: 0x0099ff,
-          description: `**Discord Nitro Monthly**\n\n**Per Month ► 450 INR / 5.49 USD**`,
-          thumbnail: {
-            url: "https://media.discordapp.net/attachments/751432960066060308/1180454130628702268/b941bc1dfe379db6cc1f2acc5a612f41.jpg?ex=65be1414&is=65ab9f14&hm=df5d484136190d727a5ebbb19b407e0c9a17d29b03e5c0b27f3d1fd5f479e103&=&format=webp",
+          color: 0xc086f4,
+          title: "Discord Nitro + Boosts",
+          url: "https://discord.com/nitro",
+          fields: [
+            { name: "Monthly", value: "450 INR / 5.49 USD", inline: false },
+            { name: "Yearly", value: "4500 INR / 54.99 USD", inline: false },
+          ],
+          image: {
+            url: "https://beebom.com/wp-content/uploads/2022/01/discord-nitro-body.jpg?w=640",
           },
-        };
-        const embedTwo = {
-          color: 0x0099ff,
-          description: `**Discord Nitro Yearly**\n\n**Per Year ► 4500 INR / 54.99 USD**`,
-          thumbnail: {
-            url: "https://media.discordapp.net/attachments/751432960066060308/1180454130628702268/b941bc1dfe379db6cc1f2acc5a612f41.jpg?ex=65be1414&is=65ab9f14&hm=df5d484136190d727a5ebbb19b407e0c9a17d29b03e5c0b27f3d1fd5f479e103&=&format=webp",
-          },
-        };
-
-        interaction.channel.send({ embeds: [exampleEmbed, embedTwo] });
-        interaction.reply({ content: "Message sent", ephemeral: true });
-      }
-      //? ----------------------------------------------------
-      //? ----------------- NITRO BOOST ----------------------
-      //? ----------------------------------------------------
-      else if (subcommand === "nitro-boost") {
-        const exampleEmbed = {
-          color: 0x0099ff,
-          description: `**Additional Boost**\n\n**Per Boost ► 119 INR / 1.45 USD**`,
-          thumbnail: {
-            url: "https://media.discordapp.net/attachments/751432960066060308/1180454130628702268/b941bc1dfe379db6cc1f2acc5a612f41.jpg?ex=65be1414&is=65ab9f14&hm=df5d484136190d727a5ebbb19b407e0c9a17d29b03e5c0b27f3d1fd5f479e103&=&format=webp",
+          footer: {
+            text: `Buzz Buy • ${moment(new Date()).format(
+              "YYYY/MM/DD h:mm A"
+            )}`,
+            icon_url: client.user.avatarURL(),
           },
         };
 
-        interaction.channel.send({ embeds: [exampleEmbed] });
-        interaction.reply({ content: "Message sent", ephemeral: true });
+        interaction.channel
+          .send({ embeds: [exampleEmbed] })
+          .then(() =>
+            interaction.reply({ content: "Message sent", ephemeral: true })
+          );
       }
       //? ----------------------------------------------------
       //? ----------------- SPOTIFY --------------------------
       //? ----------------------------------------------------
       else if (subcommand === "spotify") {
         const exampleEmbed = {
-          color: 0x0099ff,
-          description: `**Spotify Premium**\n\n**Individual Monthly ► 3.99 USD\nIndividual Yearly ► 39.9 USD**`,
-          thumbnail: {
-            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG1wdhQGIOrjluOiFZr0qOzMeaAzXZvCQvDA&usqp=CAU",
+          color: 0x1ed760,
+          title: "Spotify Premium Individual",
+          url: "https://www.spotify.com/premium/",
+          fields: [
+            { name: "Monthly", value: "3.99 USD", inline: false },
+            { name: "Yearly", value: "39.99 USD", inline: false },
+          ],
+          image: {
+            url: "https://www.scdn.co/i/_global/open-graph-default.png",
+          },
+          footer: {
+            text: `Buzz Buy • ${moment(new Date()).format(
+              "YYYY/MM/DD h:mm A"
+            )}`,
+            icon_url: client.user.avatarURL(),
           },
         };
 
         const exampleEmbed2 = {
-          color: 0x0099ff,
-          description: `**Spotify Premium**\n\n**Family Monthly ► 6.99 USD\nFamily Yearly ► 69.9 USD**`,
-          thumbnail: {
-            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG1wdhQGIOrjluOiFZr0qOzMeaAzXZvCQvDA&usqp=CAU",
+          color: 0x1ed760,
+          title: "Spotify Premium Family",
+          url: "https://www.spotify.com/premium/",
+          fields: [
+            { name: "Monthly", value: "6.99 USD", inline: false },
+            { name: "Yearly", value: "69.99 USD", inline: false },
+          ],
+          image: {
+            url: "https://www.scdn.co/i/_global/open-graph-default.png",
+          },
+          footer: {
+            text: `Buzz Buy • ${moment(new Date()).format(
+              "YYYY/MM/DD h:mm A"
+            )}`,
+            icon_url: client.user.avatarURL(),
           },
         };
 
-        interaction.channel.send({ embeds: [exampleEmbed, exampleEmbed2] });
-        interaction.reply({ content: "Message sent", ephemeral: true });
+        interaction.channel
+          .send({ embeds: [exampleEmbed] })
+          .then(() => interaction.channel.send({ embeds: [exampleEmbed2] }))
+          .then(() =>
+            interaction.reply({ content: "Message sent", ephemeral: true })
+          );
       }
       //? ----------------------------------------------------
       //? ----------------- YOUTUBE --------------------------
       //? ----------------------------------------------------
       else if (subcommand === "youtube") {
         const exampleEmbed = {
-          color: 0x0099ff,
-          description: `**Youtube Premium**\n\n**Monthly ► 4.99 USD\nYearly ► 49.9 USD**`,
-          thumbnail: {
-            url: "https://c4.wallpaperflare.com/wallpaper/377/439/784/red-white-logo-youtube-wallpaper-preview.jpg",
+          color: 0xe62d28,
+          title: "Youtube Premium",
+          url: "https://www.youtube.com/premium",
+          fields: [
+            { name: "Monthly", value: "4.99 USD", inline: false },
+            { name: "Yearly", value: "49.99 USD", inline: false },
+          ],
+          image: {
+            url: "https://fdn.gsmarena.com/imgroot/news/23/02/youtube-testing-1080p-premium/-1200/gsmarena_000.jpg",
+          },
+          footer: {
+            text: `Buzz Buy • ${moment(new Date()).format(
+              "YYYY/MM/DD h:mm A"
+            )}`,
+            icon_url: client.user.avatarURL(),
           },
         };
 
         interaction.channel.send({ embeds: [exampleEmbed] });
         interaction.reply({ content: "Message sent", ephemeral: true });
       }
+      //? ----------------------------------------------------
+      //? ----------------- YOUTUBE --------------------------
+      //? ----------------------------------------------------
+      else if (subcommand === "youtube-music") {
+        const exampleEmbed = {
+          color: 0xe62d28,
+          title: "Youtube Music",
+          url: "https://music.youtube.com/music_premium/musicfeed",
+          fields: [
+            { name: "Monthly", value: "5.49 USD", inline: false },
+            { name: "Yearly", value: "54.99 USD", inline: false },
+          ],
+          image: {
+            url: "https://cdn.siasat.com/wp-content/uploads/2022/12/Youtube-Music.jpg",
+          },
+          footer: {
+            text: `Buzz Buy • ${moment(new Date()).format(
+              "YYYY/MM/DD h:mm A"
+            )}`,
+            icon_url: client.user.avatarURL(),
+          },
+        };
+
+        interaction.channel.send({ embeds: [exampleEmbed] });
+        interaction.reply({ content: "Message sent", ephemeral: true });
+      }
+      //? ----------------------------------------------------
+      //? ----------------- CRUNCHYROLL --------------------------
+      //? ----------------------------------------------------
+      else if (subcommand === "crunchyroll") {
+        const exampleEmbed = {
+          color: 0x0099ff,
+          title: "Crunchyroll Premium",
+          url: "https://www.crunchyroll.com/",
+          description: `**FAN Monthly ► 3.99 USD**`,
+          fields: [{ name: "", value: "Stream on 1 device at a time" }],
+          image: {
+            url: "https://staticg.sportskeeda.com/editor/2022/09/7b2f6-16632302973114-1920.jpg?w=840",
+          },
+          footer: {
+            text: `Buzz Buy • ${moment(new Date()).format(
+              "YYYY/MM/DD h:mm A"
+            )}`,
+            icon_url: client.user.avatarURL(),
+          },
+        };
+
+        const exampleEmbed2 = {
+          color: 0x0099ff,
+          title: "Crunchyroll Premium",
+          url: "https://www.crunchyroll.com/",
+          description: `**Mega Fan Monthly ► 4.99 USD**`,
+          fields: [
+            {
+              name: "",
+              value: "Stream on up to 4 devices at a time",
+              inline: false,
+            },
+            {
+              name: "",
+              value: "Offline Viewing",
+              inline: false,
+            },
+            {
+              name: "",
+              value: "Access Crunchyroll Game Vault, a catalog of free games",
+              inline: false,
+            },
+          ],
+          image: {
+            url: "https://i.ytimg.com/vi/1U5zR5tm2iQ/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGCggHyh_MA8=&rs=AOn4CLBiB7yRhddCaTKBvyFFgpUQVRHTcA",
+          },
+          footer: {
+            text: `Buzz Buy • ${moment(new Date()).format(
+              "YYYY/MM/DD h:mm A"
+            )}`,
+            icon_url: client.user.avatarURL(),
+          },
+        };
+
+        const exampleEmbed3 = {
+          color: 0x0099ff,
+          title: "Crunchyroll Premium",
+          url: "https://www.crunchyroll.com/",
+          description: `**Mega Fan Yearly ► 49.99 USD**`,
+          fields: [
+            {
+              name: "",
+              value: "Stream on up to 4 devices at a time",
+              inline: false,
+            },
+            {
+              name: "",
+              value: "Offline Viewing",
+              inline: false,
+            },
+            {
+              name: "",
+              value: "Access Crunchyroll Game Vault, a catalog of free games",
+              inline: false,
+            },
+            {
+              name: "",
+              value: "2 months free",
+              inline: false,
+            },
+          ],
+          image: {
+            url: "https://i.ytimg.com/vi/ysRb72ghl3A/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AHUBoAC4AOKAgwIABABGBMgNCh_MA8=&rs=AOn4CLChhyb2NVa4PGYX41W3311C5tz6Og",
+          },
+          footer: {
+            text: `Buzz Buy • ${moment(new Date()).format(
+              "YYYY/MM/DD h:mm A"
+            )}`,
+            icon_url: client.user.avatarURL(),
+          },
+        };
+
+        interaction.channel
+          .send({ embeds: [exampleEmbed] })
+          .then(() => interaction.channel.send({ embeds: [exampleEmbed2] }))
+          .then(() => interaction.channel.send({ embeds: [exampleEmbed3] }))
+          .then(() =>
+            interaction.reply({ content: "Message sent", ephemeral: true })
+          );
+      }
     } catch (error) {
-      interaction.reply("There was some error running this command");
+      console.log(error);
+      interaction.reply({
+        content: "There was some error running this command",
+        ephemeral: true,
+      });
     }
   },
   options: {
